@@ -1,22 +1,30 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 const Tags = () => {
-    // const [isTagCliked,setIsTagCliked]=useState()
+  const pathName = useLocation().pathname;
+  const [location, setLocation] = useState("/");
+  useEffect(() => {
+    setLocation(pathName);
+  }, [pathName]);
   return (
-    <div className="flex justify-center m-4 text-[#FFDD95]  ">
+    <div className="flex justify-center m-4  text-[#FFFFFF] font-semibold ">
       <div className="flex m-4  ">
         <div
-          className="  text-lg  border-white text-white  border-b-2 "
-        //   style={{ borderColor: "#FFDD95" }}
+          className={`  text-lg border-b-2  ${
+            location == "/" ? "text-[#FFDD95]" : ""
+          }`}
+          style={{ borderColor: `${location == "/" ? "#FFDD95" : "#FFFFFF"}` }}
         >
-          <Link to="/popular" className="px-4">
+          <Link to="/" className="px-4">
             Popular
           </Link>
         </div>
 
         <div
-          className="  text-lg border-gray-400  border-b-2 "
-          style={{ borderColor: "#FFDD95" }}
+          className={`  text-lg border-b-2  ${
+            location == "/recent" ? "text-[#FFDD95]" : ""
+          }`}
+          style={{ borderColor: `${location == "/recent" ? "#FFDD95" : "#FFFFFF"}` }}
         >
           <Link to="/recent" className="px-4">
             Recent
@@ -24,8 +32,10 @@ const Tags = () => {
         </div>
 
         <div
-          className="  text-lg border-gray-400  border-b-2 "
-          style={{ borderColor: "#FFDD95" }}
+          className={`  text-lg border-b-2  ${
+            location == "/bigthree" ? "text-[#FFDD95]" : ""
+          }`}
+          style={{ borderColor: `${location == "/bigthree" ? "#FFDD95" : "#FFFFFF"}` }}
         >
           <Link to="/bigthree" className="px-4">
             Big Three
@@ -33,8 +43,10 @@ const Tags = () => {
         </div>
 
         <div
-          className="  text-lg border-gray-400  border-b-2 "
-          style={{ borderColor: "#FFDD95" }}
+          className={`  text-lg border-b-2  ${
+            location == "/ninenovas" ? "text-[#FFDD95]" : ""
+          }`}
+          style={{ borderColor: `${location == "/ninenovas" ? "#FFDD95" : "#FFFFFF"}` }}
         >
           <Link to="/ninenovas" className="px-4">
             Nine Nova
@@ -42,8 +54,10 @@ const Tags = () => {
         </div>
 
         <div
-          className="  text-lg border-gray-400  border-b-2 "
-          style={{ borderColor: "#FFDD95" }}
+          className={`  text-lg border-b-2  ${
+            location == "/favourite" ? "text-[#FFDD95]" : ""
+          }`}
+          style={{ borderColor: `${location == "/favourite" ? "#FFDD95" : "#FFFFFF"}` }}
         >
           <Link to="/favourite" className="px-4">
             Favourite
@@ -56,10 +70,3 @@ const Tags = () => {
 
 export default Tags;
 
-/*
-
-*/
-
-/*
-  
-*/

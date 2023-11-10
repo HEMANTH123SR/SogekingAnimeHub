@@ -1,5 +1,5 @@
 const BlogCard = ({ blogImg, title, blogParagraph, Date, comments }) => {
-  console.log(blogParagraph)
+ 
   return (
     <div
       className="flex flex-col h-90 w-80  m-4 bg-[#242428] rounded-xl shadow-xl text-[#4A4A4D] font-semibold"
