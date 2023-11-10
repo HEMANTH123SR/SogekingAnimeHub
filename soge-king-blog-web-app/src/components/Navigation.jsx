@@ -2,9 +2,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { BiSearch, BiSolidSearchAlt2 } from "react-icons/bi";
 import logo from "../../assets/soge-king-logo.jpg";
 
+
+import { useState } from "react";
+
 const Navigation = () => {
+  const [searchBtnCliked,setSearchBtnClicked]=useState(false);
   return (
-    <div className="bg-[#242428] relative">
+    <div className="bg-[#242428] relative shadow-lg">
       <div className="flex p-5 ">
         <div className="flex items-center w-2/5 space-x-4 sm:space-x-5 lg:space-x-6 xl:space-x-7">
           <GiHamburgerMenu className="text-4xl text-[#FFDD95]" />
@@ -16,13 +20,15 @@ const Navigation = () => {
           </h1>
         </div>
         <div className="flex items-center w-2/5 justify-end space-x-4">
-          <BiSearch className="text-3xl text-[#FFDD95]" />
+          <BiSearch className="text-3xl text-[#FFDD95]" onClick={()=>{
+            setSearchBtnClicked((prev)=>!prev)
+          }}/>
           <h1 className="px-4 py-1 rounded-sm font-semibold text-lg bg-[#FFDD95]">
             Login
           </h1>
         </div>
       </div>
-      <div className=" flex w-full relative justify-center ">
+      <div className={` flex w-full relative justify-center ${searchBtnCliked ? '' : 'hidden'} `}>
         <input
           type="text"
           placeholder="search"

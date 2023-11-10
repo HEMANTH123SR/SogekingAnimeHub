@@ -1,11 +1,9 @@
-import Navigation from "./components/Navigation/Navigation"
+
+import AppRouter from "./router/AppRouter";
 
 const App=()=>{
   return(
-    <div >
-      <Navigation/>
-      <h1>hello world</h1>
-    </div>
+    <AppRouter/>
   )
 }
 
