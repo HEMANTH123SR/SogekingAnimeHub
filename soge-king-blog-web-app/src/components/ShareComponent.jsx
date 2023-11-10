@@ -1,4 +1,4 @@
-import sogekingGif from "../../assets/sogeking-one-piece-gif.gif"
+import sogekingGif from "../assets/sogeking-one-piece-gif.gif"
 
 const ShareComponent=()=>{
     return(

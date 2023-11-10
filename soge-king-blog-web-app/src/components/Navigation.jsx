@@ -1,6 +1,6 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiSearch, BiSolidSearchAlt2 } from "react-icons/bi";
-import logo from "../../assets/soge-king-logo.jpg";
+import logo from "../assets/soge-king-logo.jpg";
 
 
 import { useState } from "react";
