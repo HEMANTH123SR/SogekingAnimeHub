@@ -1,4 +1,4 @@
-import { Client, Account } from "appwrite";
+import { Client,Account} from "appwrite";
 
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1")
@@ -16,4 +16,15 @@ const createAccount = async ({ email, password }) => {
   }
 };
 
-export { createAccount };
+const signUp=async({email,password})=>{
+try{
+const response=await account.create("hhhshhsh677s7s6s",email,password);
+console.log(response);
+return false;
+}catch(e){
+console.log(e);
+return true;
+}
+}
+
+export { createAccount ,signUp};

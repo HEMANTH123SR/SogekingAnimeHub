@@ -13,11 +13,6 @@ export const authSlice = createSlice({
   name: "AuthApp",
   initialState: intialState,
   reducers: {
-    logInStateHandler: (state, action) => {
-      state.userInfo.email = action.payload.email;
-      state.userInfo.password = action.payload.password;
-    },
-    logOutStateHandler: (state, action) => {},
     handleLoginBtnCliked: (state) => {
       state.logInBtnCliked = !state.logInBtnCliked;
     },
@@ -27,9 +22,4 @@ export const authSlice = createSlice({
   },
 });
 
-export const {
-  logInStateHandler,
-  logOutStateHandler,
-  handleLoginBtnCliked,
-  handleIsLogedIn,
-} = authSlice.actions;
+export const { handleLoginBtnCliked, handleIsLogedIn } = authSlice.actions;
