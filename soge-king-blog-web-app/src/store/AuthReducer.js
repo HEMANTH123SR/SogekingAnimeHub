@@ -2,20 +2,27 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const intialState = {
   isLogedIn: false,
-  userInfo: {},
-  logInBtnCliked:false
+  userInfo: {
+    email: "",
+    password: "",
+  },
+  logInBtnCliked: false,
 };
 
 export const authSlice = createSlice({
   name: "AuthApp",
   initialState: intialState,
   reducers: {
-    logIn: (state, action) => {},
-    logOut: (state, action) => {},
-    handleLoginBtnCliked:(state)=>{
-      state.logInBtnCliked=!state.logInBtnCliked
-    }
+    logInStateHandler: (state, action) => {
+      state.userInfo.email = action.payload.email;
+      state.userInfo.password = action.payload.password;
+    },
+    logOutStateHandler: (state, action) => {},
+    handleLoginBtnCliked: (state) => {
+      state.logInBtnCliked = !state.logInBtnCliked;
+    },
   },
 });
 
-export const {logIn,logOut,handleLoginBtnCliked}=authSlice.actions;
+export const { logInStateHandler, logOutStateHandler, handleLoginBtnCliked } =
+  authSlice.actions;
