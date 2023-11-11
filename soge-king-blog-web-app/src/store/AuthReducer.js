@@ -21,8 +21,15 @@ export const authSlice = createSlice({
     handleLoginBtnCliked: (state) => {
       state.logInBtnCliked = !state.logInBtnCliked;
     },
+    handleIsLogedIn: (state) => {
+      state.isLogedIn = true;
+    },
   },
 });
 
-export const { logInStateHandler, logOutStateHandler, handleLoginBtnCliked } =
-  authSlice.actions;
+export const {
+  logInStateHandler,
+  logOutStateHandler,
+  handleLoginBtnCliked,
+  handleIsLogedIn,
+} = authSlice.actions;

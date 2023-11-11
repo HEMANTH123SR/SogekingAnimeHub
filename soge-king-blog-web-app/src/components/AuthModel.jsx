@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoginBtnCliked, logInStateHandler } from "../store/AuthReducer";
+import {
+  handleLoginBtnCliked,
+  logInStateHandler,
+  handleIsLogedIn,
+} from "../store/AuthReducer";
 import { useState } from "react";
 import { createAccount } from "../appwrite/Auth";
 
@@ -21,17 +25,17 @@ const AuthModel = () => {
       return;
     }
     if (await !successOrFailState) {
-      handleClose({state:"true"})
+      handleClose({ state: "true" });
       console.log(
         "AuthModule :: async task :: closing the model after the task is compled "
       );
     }
   };
 
-  
   const handleClose = (e) => {
     if (e.state == "true") {
       dispatch(handleLoginBtnCliked());
+      dispatch(handleIsLogedIn());
       return;
     }
 
@@ -39,7 +43,6 @@ const AuthModel = () => {
       dispatch(handleLoginBtnCliked());
     }
   };
-
 
   if (!authState.logInBtnCliked) return;
 

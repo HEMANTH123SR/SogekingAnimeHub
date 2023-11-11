@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import {handleLoginBtnCliked} from "../store/AuthReducer"
+import { handleLoginBtnCliked } from "../store/AuthReducer";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiSearch } from "react-icons/bi";
 import logo from "../assets/soge-king-logo.jpg";
-
+import usoopGuest from "../assets/guest/usoop-guest-3.jpg";
 import { useState } from "react";
 
 const Navigation = () => {
   const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
   const [searchBtnCliked, setSearchBtnClicked] = useState(false);
   return (
     <div className="bg-[#242428] relative shadow-lg">
@@ -28,14 +29,19 @@ const Navigation = () => {
               setSearchBtnClicked((prev) => !prev);
             }}
           />
-          <button
-            className="px-4 py-1 rounded-sm font-semibold text-lg bg-[#FFDD95]"
-            onClick={() => {
-              dispatch(handleLoginBtnCliked());
-            }}
-          >
-            Login
-          </button>
+
+          {authState.isLogedIn ? (
+            <img src={usoopGuest} className="w-12 h-12 rounded-full" />
+          ) : (
+            <button
+              className="px-4 py-1 rounded-sm font-semibold text-lg bg-[#FFDD95]"
+              onClick={() => {
+                dispatch(handleLoginBtnCliked());
+              }}
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
       <div
