@@ -5,8 +5,9 @@ import TabsContent from "../../components/Tags";
 import AuthModel from "../../components/AuthModel";
 import { getBlogs } from "../../appwrite/Auth";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleBlogsLoading, setListOfBlogs } from "../../store/BlogsReducer";
+import HamBurgerMenu from "../../components/HamBurgerMenu";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const HomePage = () => {
       <TabsContent />
       <Outlet />
       <AuthModel />
+      <HamBurgerMenu/>
     </div>
   );
 };

@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoginBtnCliked } from "../store/AuthReducer";
+import {
+  handleLoginBtnCliked,
+  handleHamBurgerCliked,
+} from "../store/AuthReducer";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiSearch } from "react-icons/bi";
 import usoopGuest from "../assets/guest/usoop-guest-3.jpg";
@@ -14,7 +17,12 @@ const Navigation = () => {
     <div className="bg-[#242428] relative shadow-lg">
       <div className="flex p-5 ">
         <div className="flex items-center w-2/5 space-x-4 sm:space-x-5 lg:space-x-6 xl:space-x-7">
-          <GiHamburgerMenu className="text-4xl text-[#FFDD95]" />
+          <GiHamburgerMenu
+            className="text-4xl text-[#FFDD95]"
+            onClick={() => {
+              dispatch(handleHamBurgerCliked());
+            }}
+          />
         </div>
         <div className="w-3/5 flex justify-center">
           <h1 className="text-2xl text-[#FFDD95] font-semibold">

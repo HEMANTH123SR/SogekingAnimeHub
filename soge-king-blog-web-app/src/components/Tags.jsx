@@ -13,8 +13,7 @@ const Tags = () => {
       <div className="flex m-4 space-x-4">
         <TagLink to="/" currentPath={location}>Popular</TagLink>
         <TagLink to="/recent" currentPath={location}>Recent</TagLink>
-        <TagLink to="/bigthree" currentPath={location}>Big Three</TagLink>
-     
+        <TagLink to="/bigthree" currentPath={location}>Big Three</TagLink>     
         <TagLink to="/favourite" currentPath={location}>Favourite</TagLink>
       </div>
     </div>
