@@ -22,9 +22,12 @@ export default function Recent() {
             blogImg={data.img}
             Date={data.date}
             blogParagraph={data.contentBlog}
+            liked={data.liked}
           />
         </div>
       ))}
     </div>
   );
 }
+
+
