@@ -8,7 +8,7 @@ export default function BigThree() {
   const BlogsData = useSelector((state) => state.blog);
   if (BlogsData.blogsLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
+      <div >
         <SkeltonComponentBlog />
       </div>
     );
