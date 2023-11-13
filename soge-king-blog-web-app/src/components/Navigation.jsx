@@ -37,7 +37,7 @@ const Navigation = () => {
             }}
           />
 
-          {authState.isLogedIn ? (
+          {authState.isLogedIn || localStorage.getItem("id") ? (
             <img src={usoopGuest} className="w-12 h-12 rounded-full" />
           ) : (
             <button

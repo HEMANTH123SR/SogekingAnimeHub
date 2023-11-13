@@ -37,7 +37,7 @@ const getId = () => {
     4,
     3,
     2,
-    1
+    1,
   ];
   for (let i = 0; i < 36; i++) {
     const randomCharcter = charctersArray[Math.floor(Math.random() * 35)];
@@ -55,8 +55,9 @@ const database = new Databases(client);
 const createAccount = async ({ email, password }) => {
   try {
     const response = await account.createEmailSession(email, password);
-  localStorage.setItem('id',response.$id);
-  localStorage.setItem('email',response.provider);
+    localStorage.setItem("id", response.$id);
+    localStorage.setItem("email", response.providerUid);
+    console.log(response.providerUid);
     return false;
   } catch (e) {
     console.log(e);
@@ -67,8 +68,8 @@ const createAccount = async ({ email, password }) => {
 const signUp = async ({ email, password }) => {
   try {
     const response = await account.create(getId(), email, password);
-    localStorage.setItem('id',response.$id);
-    localStorage.setItem("email",response.email)
+    localStorage.setItem("id", response.$id);
+    localStorage.setItem("email", response.email);
     return false;
   } catch (e) {
     console.log(e);
