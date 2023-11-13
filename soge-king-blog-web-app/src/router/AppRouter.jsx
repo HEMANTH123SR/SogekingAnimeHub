@@ -5,6 +5,7 @@ import Popular from "../pages/Home/BlogsDisplayContent/Popular";
 import NineNovas from "../pages/Home/BlogsDisplayContent/NineNovas";
 import Recent from "../pages/Home/BlogsDisplayContent/Recent";
 import Favourite from "../pages/Home/BlogsDisplayContent/Favourite";
+import CreateBlog from "../pages/Home/CreateBlog";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
             <Route path="/ninenovas" element={<NineNovas/>}/>
             <Route path="/favourite" element={<Favourite/>} />
             </Route>
+            <Route path="createBlog" element={<CreateBlog/>}/>
       </Routes>
     </>
   );

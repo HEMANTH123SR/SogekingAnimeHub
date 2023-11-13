@@ -16,7 +16,7 @@ const Navigation = () => {
   return (
     <div className="bg-[#242428] relative shadow-lg">
       <div className="flex p-5 ">
-        <div className="flex items-center w-2/5 space-x-4 sm:space-x-5 lg:space-x-6 xl:space-x-7">
+        <div className="flex items-center w-2/12 md:w-2/5 lg:w-2/5 xl:w-2/5 space-x-4 sm:space-x-5 lg:space-x-6 xl:space-x-7 ">
           <GiHamburgerMenu
             className="text-4xl text-[#FFDD95]"
             onClick={() => {
@@ -24,12 +24,12 @@ const Navigation = () => {
             }}
           />
         </div>
-        <div className="w-3/5 flex justify-center">
+        <div className="w-3/5 flex justify-center ">
           <h1 className="text-2xl text-[#FFDD95] font-semibold">
             Sogeking.Blog
           </h1>
         </div>
-        <div className="flex items-center w-2/5 justify-end space-x-4">
+        <div className="flex items-center w-2/5 justify-end space-x-4 ">
           <BiSearch
             className="text-3xl text-[#FFDD95]"
             onClick={() => {
