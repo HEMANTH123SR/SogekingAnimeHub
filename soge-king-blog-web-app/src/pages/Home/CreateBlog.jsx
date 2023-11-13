@@ -17,6 +17,7 @@ const TextEditor = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState(null);
   const [postEditorData, setPostEditorData] = useState("");
   const postSumbitHanlder = () => {
     if (title.length < 5) {
@@ -24,18 +25,20 @@ const TextEditor = () => {
       setErrorMessage("Title need to have more then 5 charcters");
       return;
     }
+    if (!image) {
+      setError(true);
+      setErrorMessage("Image is required");
+    }
     if (!editorRef.current) {
       setError(true);
       setErrorMessage("Problem with Text Editor");
       return;
     }
     setPostEditorData(editorRef.current.getContent());
-    if (postEditorData.length < 300) {
-      setError(true);
-      setErrorMessage("does not have a minum content inside text editor");
-    }
-    console.log("your title \n", title);
-    console.log("your text editor data \n", postEditorData);
+
+    console.log("title \n", title);
+    console.log("image \n",image);
+    console.log("text editor text \n",postEditorData)
   };
 
   return (
@@ -83,6 +86,9 @@ const TextEditor = () => {
             type="file"
             className=" p-3 rounded-md text-white"
             style={{ border: "2px solid #FFDD95" }}
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
           />
         </div>
         <div>
@@ -119,11 +125,19 @@ const TextEditor = () => {
                 "alignright alignjustify | bullist numlist outdent indent | " +
                 "removeformat | help",
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:22px }",
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:15px }",
             }}
           />
         </div>
-        
+        <div className="flex w-full justify-center">
+          <button
+            className="px-12 py-3 rounded-sm font-bold text-xl bg-[#FFDD95]"
+            onClick={postSumbitHanlder}
+          >
+            Upload
+          </button>
+        </div>
+        <div className="mt-96"></div>
       </div>
     </div>
   );

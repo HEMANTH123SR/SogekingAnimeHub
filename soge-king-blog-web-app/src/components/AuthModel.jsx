@@ -69,7 +69,10 @@ const AuthModel = () => {
       console.log(
         "AuthModule :: async task :: closing the model after the task is complted "
       );
+      
     }
+
+
   };
 
   const handleClose = (e) => {

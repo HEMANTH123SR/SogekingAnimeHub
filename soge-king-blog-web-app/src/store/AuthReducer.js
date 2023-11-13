@@ -4,10 +4,10 @@ const intialState = {
   isLogedIn: false,
   userInfo: {
     email: "",
-    password: "",
+    id: "",
   },
   logInBtnCliked: false,
-  hamBurgerBtnCliked:false,
+  hamBurgerBtnCliked: false,
 };
 
 export const authSlice = createSlice({
@@ -20,10 +20,11 @@ export const authSlice = createSlice({
     handleIsLogedIn: (state) => {
       state.isLogedIn = true;
     },
-    handleHamBurgerCliked:(state)=>{
-      state.hamBurgerBtnCliked=!state.hamBurgerBtnCliked;
-    }
+    handleHamBurgerCliked: (state) => {
+      state.hamBurgerBtnCliked = !state.hamBurgerBtnCliked;
+    },
   },
 });
 
-export const { handleLoginBtnCliked, handleIsLogedIn ,handleHamBurgerCliked} = authSlice.actions;
+export const { handleLoginBtnCliked, handleIsLogedIn, handleHamBurgerCliked } =
+  authSlice.actions;
