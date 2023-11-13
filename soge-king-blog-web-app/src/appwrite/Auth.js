@@ -47,8 +47,8 @@ const getId = () => {
 };
 
 const client = new Client()
-  .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("654ccbb575d571178033");
+  .setEndpoint(import.meta.env.VITE_APP_ID)
+  .setProject(import.meta.env.VITE_PROJECT_ID);
 const account = new Account(client);
 const database = new Databases(client);
 
@@ -80,8 +80,8 @@ const signUp = async ({ email, password }) => {
 const getBlogs = async () => {
   try {
     const blogsList = await database.listDocuments(
-      "654f9f9a5dbc030bbc7f",
-      "654f9fa4a3b5ea641c52"
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID
     );
     console.log(blogsList);
     return blogsList;

@@ -13,12 +13,14 @@ export default function CreateBlog() {
 }
 
 const TextEditor = () => {
+  const apiKey=import.meta.env.VITE_TINY_MCI_API_KEY;
   const editorRef = useRef(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
   const [postEditorData, setPostEditorData] = useState("");
+  const [summary, setSummary] = useState("");
   const postSumbitHanlder = () => {
     if (title.length < 5) {
       setError(true);
@@ -35,10 +37,15 @@ const TextEditor = () => {
       return;
     }
     setPostEditorData(editorRef.current.getContent());
-
+    if (summary.length < 300) {
+      setError(true);
+      setErrorMessage(
+        "Summary is required and should contain more then 300 charcters"
+      );
+    }
     console.log("title \n", title);
-    console.log("image \n",image);
-    console.log("text editor text \n",postEditorData)
+    console.log("image \n", image);
+    console.log("text editor text \n", postEditorData);
   };
 
   return (
@@ -74,6 +81,25 @@ const TextEditor = () => {
             }}
           />
         </div>
+        <div className="flex flex-col space-y-3  w-full ">
+          <label
+            htmlFor="summary"
+            className="text-xl font-semibold text-[#FFDD95]"
+          >
+            Summary
+          </label>
+         
+          <textarea
+          id="summary"
+          placeholder="summary of your blog"
+            className=" p-3 rounded-md"
+            style={{ border: "2px solid #FFDD95", height: 150 }}
+            value={summary}
+            onChange={(e) => {
+              setSummary(e.target.value);
+            }}
+          ></textarea>
+        </div>
         <div className="flex flex-col space-y-3 w-full">
           <label
             htmlFor="uploadImage"
@@ -93,7 +119,7 @@ const TextEditor = () => {
         </div>
         <div>
           <Editor
-            apiKey="cuq11fucd0tlj44bauz2vzw4cbbxgvlnqo204qjcac2s8pj2"
+            apiKey={apiKey}
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue="<p>This is the initial content of the editor.</p>"
             init={{
