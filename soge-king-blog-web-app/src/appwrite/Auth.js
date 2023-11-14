@@ -90,4 +90,16 @@ const getBlogs = async () => {
   }
 };
 
-export { createAccount, signUp, getBlogs };
+
+const createBlog=(name,id,title,image,summary,date,editorData)=>{
+  console.log("appwrite appwrite appwrite appwrite")
+  console.log("name: ", name);
+  console.log("user id: ", id);
+  console.log("title: ", title);
+  console.log("summary: ", summary);
+  console.log("image :", image);
+  console.log("date :",date)
+  console.log("editor data:",editorData);
+}
+
+export { createAccount, signUp, getBlogs,createBlog };

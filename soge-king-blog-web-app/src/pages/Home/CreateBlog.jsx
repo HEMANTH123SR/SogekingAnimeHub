@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import ShareComponent from "../../components/ShareComponent";
+import { createBlog } from "../../appwrite/Auth";
+import { data } from "autoprefixer";
 
 export default function CreateBlog() {
   return (
@@ -13,13 +15,15 @@ export default function CreateBlog() {
 }
 
 const TextEditor = () => {
-  const apiKey=import.meta.env.VITE_TINY_MCI_API_KEY;
+  const apiKey = import.meta.env.VITE_TINY_MCI_API_KEY;
   const editorRef = useRef(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const userId = localStorage.getItem("id");
+  const name = localStorage.getItem("email").replace("@gmail.com", "");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
-  const [postEditorData, setPostEditorData] = useState("");
+
   const [summary, setSummary] = useState("");
   const postSumbitHanlder = () => {
     if (title.length < 5) {
@@ -30,27 +34,40 @@ const TextEditor = () => {
     if (!image) {
       setError(true);
       setErrorMessage("Image is required");
-    }
-    if (!editorRef.current) {
-      setError(true);
-      setErrorMessage("Problem with Text Editor");
       return;
     }
-    setPostEditorData(editorRef.current.getContent());
+    if (!image.type == "image/jpeg") {
+      setError(true);
+      setErrorMessage("not a proper file, upload jpg format image only");
+      return;
+    }
     if (summary.length < 300) {
       setError(true);
       setErrorMessage(
         "Summary is required and should contain more then 300 charcters"
       );
+      return;
     }
-    console.log("title \n", title);
-    console.log("image \n", image);
-    console.log("text editor text \n", postEditorData);
+    if (!userId) {
+      setError(true);
+      setErrorMessage("Login required");
+      return;
+    }
+  ;
+    createBlog(
+      name,
+      userId,
+      title,
+      image,
+      summary,
+      getCurrentDate(),
+      editorRef.current.getContent()
+    );
   };
 
   return (
     <div className="w-full flex justify-center bg-[#242428]">
-      <div className="flex flex-col space-y-12  items-center ">
+      <div className="flex flex-col w-11/12 space-y-12  items-center ">
         <div>
           {error ? (
             <div className="flex justify-center">
@@ -88,10 +105,10 @@ const TextEditor = () => {
           >
             Summary
           </label>
-         
+
           <textarea
-          id="summary"
-          placeholder="summary of your blog"
+            id="summary"
+            placeholder="summary of your blog"
             className=" p-3 rounded-md"
             style={{ border: "2px solid #FFDD95", height: 150 }}
             value={summary}
@@ -117,7 +134,7 @@ const TextEditor = () => {
             }}
           />
         </div>
-        <div>
+        <div className="w-full">
           <Editor
             apiKey={apiKey}
             onInit={(evt, editor) => (editorRef.current = editor)}
@@ -177,4 +194,26 @@ const NavBar = () => {
       </div>
     </div>
   );
+};
+
+const getCurrentDate = () => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const d = new Date();
+  let month = months[d.getMonth()];
+  let date = d.getDate();
+  return month + " " + date;
 };
