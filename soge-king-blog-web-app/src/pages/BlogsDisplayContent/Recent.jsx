@@ -7,7 +7,7 @@ export default function Recent() {
   const BlogsData = useSelector((state) => state.blog);
   if (BlogsData.blogsLoading) {
     return (
-      <div >
+      <div>
         <SkeltonComponentBlog />
       </div>
     );
@@ -23,6 +23,7 @@ export default function Recent() {
             date={data.date}
             blogParagraph={data.summary}
             liked={data.liked}
+            documentId={data.$id}
           />
         </div>
       ))}
@@ -30,13 +31,3 @@ export default function Recent() {
   );
 }
 
-
-//   name,
-// id,
-// title,
-// summary,
-// date,
-// image:
-//   "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/11/The-Naruto-Akatsuki-members.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
-// textEditorData,
-// hashTags

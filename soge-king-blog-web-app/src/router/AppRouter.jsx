@@ -8,6 +8,8 @@ import Favourite from "../pages/BlogsDisplayContent/Favourite";
 import CreateBlog from "../pages/CreateBlog";
 import BlogsContainer from "../pages/BlogsContainer";
 import BlogPage from "../pages/BlogPage";
+import BlogNoContent from "../pages/BlogNoContent";
+
 const AppRouter = () => {
   return (
     <>
@@ -21,6 +23,7 @@ const AppRouter = () => {
         </Route>
         <Route path="createBlog" element={<CreateBlog />} />
         <Route path="blog" element={<BlogsContainer />}>
+          <Route path="" element={<BlogNoContent/>}/>
           <Route path=":id" element={<BlogPage />} />
         </Route>
       </Routes>

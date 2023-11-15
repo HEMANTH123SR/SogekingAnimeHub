@@ -17,13 +17,14 @@ export default function BigThree() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
       {BlogsData.listOfBlogs.map((data) => (
-        <div className="flex justify-center">
+        <div className="flex justify-center" key={data.$id}>
          <BlogCard
             title={data.title}
             blogImg={data.image}
             date={data.date}
             blogParagraph={data.summary}
             liked={data.liked}
+            documentId={data.$id}
           />
         </div>
       ))}
