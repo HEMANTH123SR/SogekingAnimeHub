@@ -24,7 +24,7 @@ const Navigation = () => {
             }}
           />
         </div>
-        <div className="w-3/5 flex justify-center ">
+        <div className="w-3/5 flex justify-center items-center ">
           <h1 className="text-2xl text-[#FFDD95] font-semibold">
             Sogeking.Blog
           </h1>

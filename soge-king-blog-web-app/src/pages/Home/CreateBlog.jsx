@@ -3,6 +3,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import ShareComponent from "../../components/ShareComponent";
 import { createBlog } from "../../appwrite/Auth";
 import { data } from "autoprefixer";
+import { Link } from "react-router-dom";
 
 export default function CreateBlog() {
   return (
@@ -19,10 +20,11 @@ const TextEditor = () => {
   const editorRef = useRef(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [published, setPublised] = useState(false);
   const userId = localStorage.getItem("id");
   const name = localStorage.getItem("email").replace("@gmail.com", "");
   const [title, setTitle] = useState("");
-  const [hashTags,setHashTags]=useState("")
+  const [hashTags, setHashTags] = useState("");
   const [image, setImage] = useState(null);
 
   const [summary, setSummary] = useState("");
@@ -54,16 +56,17 @@ const TextEditor = () => {
       setErrorMessage("Login required");
       return;
     }
-  ;
-    createBlog(
-      name,
-      userId,
-      title,
-      image,
-      summary,
-      getCurrentDate(),
-      editorRef.current.getContent(),
-      hashTags
+    setPublised(
+      createBlog(
+        name,
+        userId,
+        title,
+        image,
+        summary,
+        getCurrentDate(),
+        editorRef.current.getContent(),
+        hashTags
+      )
     );
   };
 
@@ -75,6 +78,16 @@ const TextEditor = () => {
             <div className="flex justify-center">
               <p className="font-semibold text-red-600 text-lg">
                 {errorMessage}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {published ? (
+            <div className="flex justify-center">
+              <p className="font-semibold text-green-500 text-lg">
+                <Link to={"/"}>See The Blog</Link>
               </p>
             </div>
           ) : (
@@ -210,8 +223,23 @@ const TextEditor = () => {
 const NavBar = () => {
   return (
     <div className="bg-[#242428] shadow-lg py-8">
-      <div className="w-full flex justify-center ">
-        <h1 className="text-2xl text-[#FFDD95] font-semibold">Sogeking.Blog</h1>
+      <div className="w-full flex  ">
+        <div className="flex w-1/2 justify-start px-4 lg:px-10">
+          <h1 className="text-xl  md:text-2xl  text-[#FFDD95] font-semibold">
+            Sogeking.Blog
+          </h1>
+        </div>
+
+        <div className="flex w-1/2 justify-end  space-x-3 lg:space-x-6 px-4 lg:px-10">
+          <Link className="text-md text-[#FFDD95] font-semibold " to="/">
+            Home
+          </Link>
+          <Link className="text-md text-[#FFDD95] font-semibold " to="/">
+            Profile
+          </Link>
+
+          <Link></Link>
+        </div>
       </div>
     </div>
   );
