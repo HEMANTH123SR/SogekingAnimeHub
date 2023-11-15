@@ -1,7 +1,7 @@
 import React from "react";
-import BlogCard from "../../../components/BlogCard";
+import BlogCard from "../../components/BlogCard";
 import { useSelector } from "react-redux";
-import SkeltonComponentBlog from "../../../components/SkeltonUiBlogComponent";
+import SkeltonComponentBlog from "../../components/SkeltonUiBlogComponent";
 
 export default function NineNovas() {
   const BlogsData = useSelector((state) => state.blog);

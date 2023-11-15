@@ -1,13 +1,13 @@
-import Navigation from "../../components/Navigation";
-import ShareComponent from "../../components/ShareComponent";
+import Navigation from "../components/Navigation";
+import ShareComponent from "../components/ShareComponent";
 import { Outlet } from "react-router-dom";
-import TabsContent from "../../components/Tags";
-import AuthModel from "../../components/AuthModel";
-import { getBlogs } from "../../appwrite/Auth";
+import TabsContent from "../components/Tags";
+import AuthModel from "../components/AuthModel";
+import { getBlogs } from "../appwrite/appwrite";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { handleBlogsLoading, setListOfBlogs } from "../../store/BlogsReducer";
-import HamBurgerMenu from "../../components/HamBurgerMenu";
+import { handleBlogsLoading, setListOfBlogs } from "../store/BlogsReducer";
+import HamBurgerMenu from "../components/HamBurgerMenu";
 
 const HomePage = () => {
   const dispatch = useDispatch();

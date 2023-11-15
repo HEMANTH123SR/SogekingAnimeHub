@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import ShareComponent from "../../components/ShareComponent";
-import { createBlog } from "../../appwrite/Auth";
-import { data } from "autoprefixer";
+import ShareComponent from "../components/ShareComponent";
+import { createBlog } from "../appwrite/appwrite";
 import { Link } from "react-router-dom";
 
 export default function CreateBlog() {

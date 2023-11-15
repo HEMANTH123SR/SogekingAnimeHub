@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { handleLoginBtnCliked, handleIsLogedIn } from "../store/AuthReducer";
 import { useState } from "react";
-import { createAccount, signUp } from "../appwrite/Auth";
+import { createAccount, signUp } from "../appwrite/appwrite";
 
 const AuthModel = () => {
   const [signImBtnCliked, setSignInBtnCliked] = useState(false);

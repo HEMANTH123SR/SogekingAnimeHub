@@ -1,51 +1,5 @@
 import { Client, Account, Databases, ID } from "appwrite";
 
-const getId = () => {
-  let id = "";
-  const charctersArray = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-    0,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    1,
-  ];
-  for (let i = 0; i < 36; i++) {
-    const randomCharcter = charctersArray[Math.floor(Math.random() * 35)];
-    id += randomCharcter;
-  }
-  return id;
-};
-
 const client = new Client()
   .setEndpoint(import.meta.env.VITE_APP_ID)
   .setProject(import.meta.env.VITE_PROJECT_ID);
@@ -67,7 +21,7 @@ const createAccount = async ({ email, password }) => {
 
 const signUp = async ({ email, password }) => {
   try {
-    const response = await account.create(getId(), email, password);
+    const response = await account.create(ID.unique(), email, password);
     localStorage.setItem("id", response.$id);
     localStorage.setItem("email", response.email);
     return false;
@@ -114,7 +68,7 @@ const createBlog = async (
         image:
           "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/11/The-Naruto-Akatsuki-members.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
         textEditorData,
-        hashTags
+        hashTags,
       }
     );
     console.log(res);
@@ -123,5 +77,19 @@ const createBlog = async (
   }
 };
 
-export { createAccount, signUp, getBlogs, createBlog };
+const getBlog = async (documentId) => {
+  try {
+    const res = await database.getDocument(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID,
+      documentId
+    );
+    console.log(res);
+    return res;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+};
 
+export { createAccount, signUp, getBlogs, createBlog, getBlog };
