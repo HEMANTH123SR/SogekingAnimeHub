@@ -31,18 +31,6 @@ const signUp = async ({ email, password }) => {
   }
 };
 
-const getBlogs = async () => {
-  try {
-    const blogsList = await database.listDocuments(
-      import.meta.env.VITE_DATABASE_ID,
-      import.meta.env.VITE_COLLECTION_ID
-    );
-    console.log(blogsList);
-    return blogsList;
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 const createBlog = async (
   name,
@@ -77,18 +65,32 @@ const createBlog = async (
   }
 };
 
+const getBlogs = async () => {
+  try {
+    const blogsList = await database.listDocuments(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID
+    );
+    console.log(blogsList);
+    return blogsList;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
 const getBlog = async (documentId) => {
   try {
-    const res = await database.getDocument(
+  const res=await database.getDocument(
       import.meta.env.VITE_DATABASE_ID,
       import.meta.env.VITE_COLLECTION_ID,
       documentId
-    );
-    console.log(res);
+    );   
+    
     return res;
   } catch (e) {
     console.log(e);
-    return e;
+    return null;
   }
 };
 

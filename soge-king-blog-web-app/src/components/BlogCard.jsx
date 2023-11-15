@@ -1,7 +1,9 @@
 import { AiFillLike } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ blogImg, title, blogParagraph, date, liked ,documentId}) => {
   return (
+    <Link to={`blog/${documentId}`}>
     <div className="flex flex-col h-90 w-80  m-4 bg-[#242428] rounded-xl shadow-xl text-[#4A4A4D] font-semibold">
       <img src={blogImg} className="rounded-t-xl h-[150px]" />
       <div className="p-2 space-y-2">
@@ -24,6 +26,7 @@ const BlogCard = ({ blogImg, title, blogParagraph, date, liked ,documentId}) => 
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

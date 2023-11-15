@@ -9,7 +9,7 @@ import CreateBlog from "../pages/CreateBlog";
 import BlogsContainer from "../pages/BlogsContainer";
 import BlogPage from "../pages/BlogPage";
 import BlogNoContent from "../pages/BlogNoContent";
-
+import About from "../pages/About";
 const AppRouter = () => {
   return (
     <>
@@ -26,6 +26,7 @@ const AppRouter = () => {
           <Route path="" element={<BlogNoContent/>}/>
           <Route path=":id" element={<BlogPage />} />
         </Route>
+        <Route path="about" element={<About/>}/>
       </Routes>
     </>
   );
