@@ -22,6 +22,7 @@ const TextEditor = () => {
   const userId = localStorage.getItem("id");
   const name = localStorage.getItem("email").replace("@gmail.com", "");
   const [title, setTitle] = useState("");
+  const [hashTags,setHashTags]=useState("")
   const [image, setImage] = useState(null);
 
   const [summary, setSummary] = useState("");
@@ -61,7 +62,8 @@ const TextEditor = () => {
       image,
       summary,
       getCurrentDate(),
-      editorRef.current.getContent()
+      editorRef.current.getContent(),
+      hashTags
     );
   };
 
@@ -116,6 +118,25 @@ const TextEditor = () => {
               setSummary(e.target.value);
             }}
           ></textarea>
+        </div>
+        <div className="flex flex-col space-y-3  w-full ">
+          <label
+            htmlFor="hashTags"
+            className="text-xl font-semibold text-[#FFDD95]"
+          >
+            HashTags
+          </label>
+          <input
+            id="hashTags"
+            type="text"
+            placeholder="your hashtags goes here"
+            className=" p-3 rounded-md"
+            style={{ border: "2px solid #FFDD95" }}
+            value={hashTags}
+            onChange={(e) => {
+              setHashTags(e.target.value);
+            }}
+          />
         </div>
         <div className="flex flex-col space-y-3 w-full">
           <label

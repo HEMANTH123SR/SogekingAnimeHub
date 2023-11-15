@@ -16,12 +16,12 @@ export default function Recent() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
       {BlogsData.listOfBlogs.map((data) => (
-        <div className="flex justify-center">
+        <div className="flex justify-center" key={data.$id}>
           <BlogCard
             title={data.title}
-            blogImg={data.img}
-            Date={data.date}
-            blogParagraph={data.contentBlog}
+            blogImg={data.image}
+            date={data.date}
+            blogParagraph={data.summary}
             liked={data.liked}
           />
         </div>
@@ -31,3 +31,12 @@ export default function Recent() {
 }
 
 
+//   name,
+// id,
+// title,
+// summary,
+// date,
+// image:
+//   "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/11/The-Naruto-Akatsuki-members.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
+// textEditorData,
+// hashTags

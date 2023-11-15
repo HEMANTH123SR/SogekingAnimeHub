@@ -1,6 +1,6 @@
 import { AiFillLike } from "react-icons/ai";
 
-const BlogCard = ({ blogImg, title, blogParagraph, Date, liked, author }) => {
+const BlogCard = ({ blogImg, title, blogParagraph, date, liked }) => {
   return (
     <div className="flex flex-col h-90 w-80  m-4 bg-[#242428] rounded-xl shadow-xl text-[#4A4A4D] font-semibold">
       <img src={blogImg} className="rounded-t-xl h-[150px]" />
@@ -14,7 +14,7 @@ const BlogCard = ({ blogImg, title, blogParagraph, Date, liked, author }) => {
         </p>
         <div className="flex px-5 items-center">
           <div className="w-1/2  align-middle ">
-            <p className="text-base">November 7 23</p>
+            <p className="text-base">{date}</p>
           </div>
 
           <div className="w-1/2  align-bottom flex   items-center justify-end">

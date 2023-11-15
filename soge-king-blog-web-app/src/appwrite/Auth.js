@@ -1,4 +1,4 @@
-import { Client, Account, Databases } from "appwrite";
+import { Client, Account, Databases, ID } from "appwrite";
 
 const getId = () => {
   let id = "";
@@ -90,16 +90,38 @@ const getBlogs = async () => {
   }
 };
 
+const createBlog = async (
+  name,
+  id,
+  title,
+  image,
+  summary,
+  date,
+  textEditorData,
+  hashTags
+) => {
+  try {
+    const res = await database.createDocument(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID,
+      ID.unique(),
+      {
+        name,
+        id,
+        title,
+        summary,
+        date,
+        image:
+          "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/11/The-Naruto-Akatsuki-members.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
+        textEditorData,
+        hashTags
+      }
+    );
+    console.log(res);
+  } catch (e) {
+    console.log("appwrite :: auth.js :: createBlog :: error ", e);
+  }
+};
 
-const createBlog=(name,id,title,image,summary,date,editorData)=>{
-  console.log("appwrite appwrite appwrite appwrite")
-  console.log("name: ", name);
-  console.log("user id: ", id);
-  console.log("title: ", title);
-  console.log("summary: ", summary);
-  console.log("image :", image);
-  console.log("date :",date)
-  console.log("editor data:",editorData);
-}
+export { createAccount, signUp, getBlogs, createBlog };
 
-export { createAccount, signUp, getBlogs,createBlog };

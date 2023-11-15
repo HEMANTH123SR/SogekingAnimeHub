@@ -17,11 +17,11 @@ export default function Popular() {
     <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 ">
       {BlogsData.listOfBlogs.map((data) => (
         <div className="flex justify-center">
-          <BlogCard
+        <BlogCard
             title={data.title}
-            blogImg={data.img}
-            Date={data.date}
-            blogParagraph={data.contentBlog}
+            blogImg={data.image}
+            date={data.date}
+            blogParagraph={data.summary}
             liked={data.liked}
           />
         </div>
