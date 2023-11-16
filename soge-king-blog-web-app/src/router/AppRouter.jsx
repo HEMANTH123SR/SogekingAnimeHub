@@ -10,6 +10,9 @@ import BlogsContainer from "../pages/BlogsContainer";
 import BlogPage from "../pages/BlogPage";
 import BlogNoContent from "../pages/BlogNoContent";
 import About from "../pages/About";
+import UserProfile from "../pages/UserProfile";
+import UserSetting from "../pages/UserSetting";
+
 const AppRouter = () => {
   return (
     <>
@@ -23,10 +26,12 @@ const AppRouter = () => {
         </Route>
         <Route path="createBlog" element={<CreateBlog />} />
         <Route path="blog" element={<BlogsContainer />}>
-          <Route path="" element={<BlogNoContent/>}/>
+          <Route path="" element={<BlogNoContent />} />
           <Route path=":id" element={<BlogPage />} />
         </Route>
-        <Route path="about" element={<About/>}/>
+        <Route path="about" element={<About />} />
+        <Route path="userProfile" element={<UserProfile />} />
+        <Route path="userSettings" element={<UserSetting />} />
       </Routes>
     </>
   );

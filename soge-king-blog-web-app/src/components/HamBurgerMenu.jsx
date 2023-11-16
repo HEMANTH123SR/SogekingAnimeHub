@@ -88,7 +88,7 @@ export default function HamBurgerMenu() {
         <div className=" w-full bg-[#FFDD95]" style={{ height: 1 }}></div>
         <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
           <Link
-            to="/recent"
+            to="userProfile"
             className=""
             onClick={() => {
               dispatch(handleHamBurgerCliked());
@@ -100,7 +100,7 @@ export default function HamBurgerMenu() {
         <div className=" w-full bg-[#FFDD95]" style={{ height: 1 }}></div>
         <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
           <Link
-            to="/recent"
+            to="userSettings"
             className=""
             onClick={() => {
               dispatch(handleHamBurgerCliked());
@@ -113,7 +113,7 @@ export default function HamBurgerMenu() {
 
         <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
           <Link
-            to="/recent"
+            to="about"
             className=""
             onClick={() => {
               dispatch(handleHamBurgerCliked());
