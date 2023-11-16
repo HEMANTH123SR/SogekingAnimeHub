@@ -64,6 +64,38 @@ const createBlog = async (
   }
 };
 
+const updateDocument = async (
+  databaseId,
+  name,
+  id,
+  title,
+  summary,
+  date,
+  textEditorData,
+  hashTags
+) => {
+  try {
+    const res = await database.updateDocument(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID,
+      databaseId,
+      {
+        name,
+        id,
+        title,
+        summary,
+        date,
+        textEditorData,
+        hashTags,
+      }
+    );
+    console.log(res);
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const getBlogs = async () => {
   try {
     const blogsList = await database.listDocuments(
@@ -84,7 +116,7 @@ const getUserBlog = async () => {
       import.meta.env.VITE_COLLECTION_ID,
       [Query.equal("id", localStorage.getItem("id"))]
     );
-   return userBlogList
+    return userBlogList;
   } catch (e) {
     console.log(e);
   }
@@ -105,4 +137,12 @@ const getBlog = async (documentId) => {
   }
 };
 
-export { createAccount, signUp, getBlogs, createBlog, getBlog, getUserBlog };
+export {
+  createAccount,
+  signUp,
+  getBlogs,
+  createBlog,
+  getBlog,
+  getUserBlog,
+  updateDocument,
+};

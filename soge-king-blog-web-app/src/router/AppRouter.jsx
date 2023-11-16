@@ -12,7 +12,7 @@ import BlogNoContent from "../pages/BlogNoContent";
 import About from "../pages/About";
 import UserProfile from "../pages/UserProfile";
 import UserSetting from "../pages/UserSetting";
-
+import UpdateBlog from "../pages/UpdateBlog";
 const AppRouter = () => {
   return (
     <>
@@ -31,6 +31,7 @@ const AppRouter = () => {
         </Route>
         <Route path="about" element={<About />} />
         <Route path="userProfile" element={<UserProfile />} />
+        <Route path="userProfile/blog/:id" element={<UpdateBlog/>}/>
         <Route path="userSettings" element={<UserSetting />} />
       </Routes>
     </>
