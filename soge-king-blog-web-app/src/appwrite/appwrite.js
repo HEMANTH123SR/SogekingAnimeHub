@@ -1,4 +1,4 @@
-import { Client, Account, Databases, ID } from "appwrite";
+import { Client, Account, Databases, ID, Query } from "appwrite";
 
 const client = new Client()
   .setEndpoint(import.meta.env.VITE_APP_ID)
@@ -30,7 +30,6 @@ const signUp = async ({ email, password }) => {
     return true;
   }
 };
-
 
 const createBlog = async (
   name,
@@ -78,15 +77,27 @@ const getBlogs = async () => {
   }
 };
 
+const getUserBlog = async () => {
+  try {
+    const userBlogList = await database.listDocuments(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID,
+      [Query.equal("id", localStorage.getItem("id"))]
+    );
+   return userBlogList
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const getBlog = async (documentId) => {
   try {
-  const res=await database.getDocument(
+    const res = await database.getDocument(
       import.meta.env.VITE_DATABASE_ID,
       import.meta.env.VITE_COLLECTION_ID,
       documentId
-    );   
-    
+    );
+
     return res;
   } catch (e) {
     console.log(e);
@@ -94,4 +105,4 @@ const getBlog = async (documentId) => {
   }
 };
 
-export { createAccount, signUp, getBlogs, createBlog, getBlog };
+export { createAccount, signUp, getBlogs, createBlog, getBlog, getUserBlog };
