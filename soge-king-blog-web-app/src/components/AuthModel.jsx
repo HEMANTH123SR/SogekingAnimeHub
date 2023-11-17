@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { handleLoginBtnCliked, handleIsLogedIn } from "../store/AuthReducer";
+import { handleLoginBtnCliked} from "../store/AuthReducer";
 import { useState } from "react";
 import { createAccount, signUp } from "../appwrite/appwrite";
 

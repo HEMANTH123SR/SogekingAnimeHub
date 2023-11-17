@@ -31,6 +31,18 @@ const signUp = async ({ email, password }) => {
   }
 };
 
+// const deleteAccount = async (id) => {
+//   try {
+//     const res = await account.deleteIdentity(id);
+//     localStorage.removeItem("id");
+//     localStorage.removeItem("email");
+//     console.log(res);
+//   } catch (e) {
+//     console.log("appwrite :: delete account :: src/appwrite/appwrite.js");
+//     console.log(e);
+//   }
+// };
+
 const createBlog = async (
   name,
   id,
@@ -144,5 +156,5 @@ export {
   createBlog,
   getBlog,
   getUserBlog,
-  updateDocument,
+  updateDocument
 };

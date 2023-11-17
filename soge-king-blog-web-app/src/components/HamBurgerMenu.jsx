@@ -98,7 +98,7 @@ export default function HamBurgerMenu() {
           </Link>
         </div>
         <div className=" w-full bg-[#FFDD95]" style={{ height: 1 }}></div>
-        <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
+        {/* <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
           <Link
             to="userSettings"
             className=""
@@ -109,7 +109,7 @@ export default function HamBurgerMenu() {
             User Settings
           </Link>
         </div>
-        <div className=" w-full bg-[#FFDD95]" style={{ height: 1 }}></div>
+        <div className=" w-full bg-[#FFDD95]" style={{ height: 1 }}></div> */}
 
         <div className="text-white text-lg font-semibold w-full  py-4 px-3 ">
           <Link

@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BiSearch } from "react-icons/bi";
 import {
   handleLoginBtnCliked,
   handleHamBurgerCliked,
 } from "../store/AuthReducer";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { BiSearch } from "react-icons/bi";
 import usoopGuest from "../assets/guest/usoop-guest-3.jpg";
-import { useState } from "react";
+
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Navigation = () => {
             }}
           />
 
-          {authState.isLogedIn || localStorage.getItem("id") ? (
+          { localStorage.getItem("id") ? (
             <img src={usoopGuest} className="w-12 h-12 rounded-full" />
           ) : (
             <button

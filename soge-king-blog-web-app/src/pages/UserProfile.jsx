@@ -51,8 +51,22 @@ const Profile = ({ userBlogList }) => {
             {localStorage.getItem("email")}
           </h1>
         </div>
+        <div>
+          <button
+            onClick={() => {
+              localStorage.removeItem("id");
+              localStorage.removeItem("email");
+              window.location.reload();
+            }}
+            className="px-4 py-2 mb-4 rounded-md font-semibold text-lg bg-[#FFDD95] text-[#242428]"
+          >
+            Logout
+          </button>
+        </div>
         <div className="h-1 w-full bg-[#FFDD95] mb-5"></div>
-<h1 className="text-[#FFDD95] text-center mb-5">Your Blogs, Double click to edit it</h1>
+        <h1 className="text-[#FFDD95] text-center mb-5">
+          Your Blogs, Double click to edit it
+        </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
           {userBlogList.map((data) => (
             <div className="flex justify-center" key={data.$id}>

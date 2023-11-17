@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const intialState = {
-  isLogedIn: false,
   userInfo: {
     email: "",
     id: "",
@@ -17,14 +16,11 @@ export const authSlice = createSlice({
     handleLoginBtnCliked: (state) => {
       state.logInBtnCliked = !state.logInBtnCliked;
     },
-    handleIsLogedIn: (state) => {
-      state.isLogedIn = true;
-    },
     handleHamBurgerCliked: (state) => {
       state.hamBurgerBtnCliked = !state.hamBurgerBtnCliked;
     },
   },
 });
 
-export const { handleLoginBtnCliked, handleIsLogedIn, handleHamBurgerCliked } =
+export const { handleLoginBtnCliked,  handleHamBurgerCliked } =
   authSlice.actions;
