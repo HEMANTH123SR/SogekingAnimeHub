@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "../components/Navigation";
-import ShareComponent from "../components/ShareComponent";
-import AuthModel from "../components/AuthModel";
-import HamBurgerMenu from "../components/HamBurgerMenu";
+import {Link} from "react-router-dom"
 import ussop from "../assets/guest/usoop-guest-3.jpg";
 import { getUserBlog } from "../appwrite/appwrite";
 import BlogCard from "../components/BlogCard";
@@ -20,8 +17,7 @@ export default function UserProfile() {
   }, []);
   return (
     <div>
-      <Navigation />
-      <ShareComponent />
+   <NavBar/>
       <div className="w-full bg-[#242428]">
         {localStorage.getItem("id") ? (
           <Profile userBlogList={userBlogData} />
@@ -29,8 +25,6 @@ export default function UserProfile() {
           <DontHaveAccount />
         )}
       </div>
-      <AuthModel />
-      <HamBurgerMenu />
     </div>
   );
 }
@@ -80,6 +74,31 @@ const Profile = ({ userBlogList }) => {
               />
             </div>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NavBar = () => {
+  return (
+    <div className="bg-[#242428] shadow-lg py-8">
+      <div className="w-full flex  ">
+        <div className="flex w-1/2 justify-start px-4 lg:px-10">
+          <h1 className="text-xl  md:text-2xl  text-[#FFDD95] font-semibold">
+            Sogeking.Blog
+          </h1>
+        </div>
+
+        <div className="flex w-1/2 justify-end  space-x-3 lg:space-x-6 px-4 lg:px-10">
+          <Link className="text-md text-[#FFDD95] font-semibold " to="/">
+            Home
+          </Link>
+          <Link className="text-md text-[#FFDD95] font-semibold " to="/">
+            Profile
+          </Link>
+
+       
         </div>
       </div>
     </div>
