@@ -20,8 +20,8 @@ const TextEditor = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [published, setPublised] = useState(false);
-  const userId = localStorage.getItem("id");
-  const name = localStorage.getItem("email").replace("@gmail.com", "");
+  const userId = getUserId();
+  const name = getName();
   const [title, setTitle] = useState("");
   const [hashTags, setHashTags] = useState("");
   const [image, setImage] = useState(null);
@@ -264,4 +264,18 @@ const getCurrentDate = () => {
   let month = months[d.getMonth()];
   let date = d.getDate();
   return month + " " + date;
+};
+
+const getName = () => {
+  if (localStorage.getItem("email").replace("@gmail.com", "")) {
+    return localStorage.getItem("email").replace("@gmail.com", "");
+  }
+  return "";
+};
+
+const getUserId = () => {
+  if (localStorage.getItem("id")) {
+    return localStorage.getItem("id");
+  }
+  return "";
 };
