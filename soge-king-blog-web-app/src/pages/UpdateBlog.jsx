@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import ShareComponent from "../components/ShareComponent";
-import { createBlog, getBlog, updateDocument } from "../appwrite/appwrite";
+import { getBlog, updateDocument, deleteDocument } from "../appwrite/appwrite";
 import { Link, useLocation } from "react-router-dom";
 
 export default function UpdateBlog() {
@@ -29,22 +29,22 @@ const TextEditor = () => {
   const [image, setImage] = useState(null);
   const [summary, setSummary] = useState("");
   const [editorData, setEditorData] = useState("");
-  const [isValid,setIsValid]=useState(false)
+  const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getBlog(pathName);
-      
+
       setDataBaseId(data.$id);
       setTitle(data.title); //title
       setImage(data.image); //image
       setSummary(data.summary); //summary
       setHashTags(data.hashTags); //hashtags
       setEditorData(data.textEditorData); //editorData
-      setIsValid(data.id==localStorage.getItem("id"));
+      setIsValid(data.id == localStorage.getItem("id"));
     };
     fetchData();
-  },[]);
+  }, []);
   const postSumbitHanlder = () => {
     if (title.length < 5) {
       setError(true);
@@ -110,134 +110,140 @@ const TextEditor = () => {
           ) : (
             ""
           )}
-         
         </div>
-        {isValid ? 
-        <>
-        <div className="flex flex-col space-y-3  w-full ">
-          <label
-            htmlFor="title"
-            className="text-xl font-semibold text-[#FFDD95]"
-          >
-            Title
-          </label>
-          <input
-            id="title"
-            type="text"
-            placeholder="your title goes here"
-            className=" p-3 rounded-md"
-            style={{ border: "2px solid #FFDD95" }}
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex flex-col space-y-3  w-full ">
-          <label
-            htmlFor="summary"
-            className="text-xl font-semibold text-[#FFDD95]"
-          >
-            Summary
-          </label>
+        {isValid ? (
+          <>
+            <div className="flex flex-col space-y-3  w-full ">
+              <label
+                htmlFor="title"
+                className="text-xl font-semibold text-[#FFDD95]"
+              >
+                Title
+              </label>
+              <input
+                id="title"
+                type="text"
+                placeholder="your title goes here"
+                className=" p-3 rounded-md"
+                style={{ border: "2px solid #FFDD95" }}
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex flex-col space-y-3  w-full ">
+              <label
+                htmlFor="summary"
+                className="text-xl font-semibold text-[#FFDD95]"
+              >
+                Summary
+              </label>
 
-          <textarea
-            id="summary"
-            placeholder="summary of your blog"
-            className=" p-3 rounded-md"
-            style={{ border: "2px solid #FFDD95", height: 150 }}
-            value={summary}
-            onChange={(e) => {
-              setSummary(e.target.value);
-            }}
-          ></textarea>
-        </div>
-        <div className="flex flex-col space-y-3  w-full ">
-          <label
-            htmlFor="hashTags"
-            className="text-xl font-semibold text-[#FFDD95]"
-          >
-            HashTags
-          </label>
-          <input
-            id="hashTags"
-            type="text"
-            placeholder="your hashtags goes here"
-            className=" p-3 rounded-md"
-            style={{ border: "2px solid #FFDD95" }}
-            value={hashTags}
-            onChange={(e) => {
-              setHashTags(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex flex-col space-y-3 w-full">
-          <label
-            htmlFor="uploadImage"
-            className="text-xl font-semibold text-[#FFDD95]"
-          >
-            Upload Image
-          </label>
-          <input
-            id="uploadImage"
-            type="file"
-            className=" p-3 rounded-md text-white"
-            style={{ border: "2px solid #FFDD95" }}
-            onChange={(e) => {
-              setImage(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full">
-          <Editor
-            apiKey={apiKey}
-            onInit={(evt, editor) => (editorRef.current = editor)}
-            initialValue={editorData}
-            init={{
-              height: 500,
-              menubar: false,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | blocks | " +
-                "bold italic forecolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:15px }",
-            }}
-          />
-        </div>
-        <div className="flex w-full justify-center">
-          <button
-            className="px-12 py-3 rounded-sm font-bold text-xl bg-[#FFDD95]"
-            onClick={postSumbitHanlder}
-          >
-            Update
-          </button>
-        </div>
-        <div className="mt-96"></div>
-        </>
-        :<div>not a valid account</div>
-}
+              <textarea
+                id="summary"
+                placeholder="summary of your blog"
+                className=" p-3 rounded-md"
+                style={{ border: "2px solid #FFDD95", height: 150 }}
+                value={summary}
+                onChange={(e) => {
+                  setSummary(e.target.value);
+                }}
+              ></textarea>
+            </div>
+            <div className="flex flex-col space-y-3  w-full ">
+              <label
+                htmlFor="hashTags"
+                className="text-xl font-semibold text-[#FFDD95]"
+              >
+                HashTags
+              </label>
+              <input
+                id="hashTags"
+                type="text"
+                placeholder="your hashtags goes here"
+                className=" p-3 rounded-md"
+                style={{ border: "2px solid #FFDD95" }}
+                value={hashTags}
+                onChange={(e) => {
+                  setHashTags(e.target.value);
+                }}
+              />
+            </div>
+            <div className="flex flex-col space-y-3 w-full">
+              <label
+                htmlFor="uploadImage"
+                className="text-xl font-semibold text-[#FFDD95]"
+              >
+                Upload Image
+              </label>
+              <input
+                id="uploadImage"
+                type="file"
+                className=" p-3 rounded-md text-white"
+                style={{ border: "2px solid #FFDD95" }}
+                onChange={(e) => {
+                  setImage(e.target.files[0]);
+                }}
+              />
+            </div>
+            <div className="w-full">
+              <Editor
+                apiKey={apiKey}
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                initialValue={editorData}
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist",
+                    "autolink",
+                    "lists",
+                    "link",
+                    "image",
+                    "charmap",
+                    "preview",
+                    "anchor",
+                    "searchreplace",
+                    "visualblocks",
+                    "code",
+                    "fullscreen",
+                    "insertdatetime",
+                    "media",
+                    "table",
+                    "code",
+                    "help",
+                    "wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | blocks | " +
+                    "bold italic forecolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat | help",
+                  content_style:
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:15px }",
+                }}
+              />
+            </div>
+            <div className="flex w-full justify-center space-x-8">
+              <button
+                className="px-5 lg:px-11 py-3 rounded-sm font-bold lg:text-xl bg-[#FFDD95]"
+                onClick={postSumbitHanlder}
+              >
+                Update Blog
+              </button>
+              <button
+                className="px-5 lg:px-11  py-3 rounded-sm font-bold lg:text-xl bg-[#FFDD95]"
+                onClick={()=>deleteDocument(databaseId)}
+              >
+                Delete Blog
+              </button>
+            </div>
+            <div className="mt-96"></div>
+          </>
+        ) : (
+          <div>not a valid account</div>
+        )}
       </div>
     </div>
   );

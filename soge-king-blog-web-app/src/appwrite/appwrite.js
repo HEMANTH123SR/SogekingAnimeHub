@@ -108,6 +108,18 @@ const updateDocument = async (
   }
 };
 
+const deleteDocument = async (databaseId) => {
+  try {
+    const res = await database.deleteDocument(
+      import.meta.env.VITE_DATABASE_ID,
+      import.meta.env.VITE_COLLECTION_ID,
+      databaseId
+    );
+  } catch (e) {
+    console.log("appwrite :: src/appwrite/appwrite.js :: delete document");
+  }
+};
+
 const getBlogs = async () => {
   try {
     const blogsList = await database.listDocuments(
@@ -156,5 +168,6 @@ export {
   createBlog,
   getBlog,
   getUserBlog,
-  updateDocument
+  updateDocument,
+  deleteDocument,
 };
