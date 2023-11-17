@@ -267,7 +267,7 @@ const getCurrentDate = () => {
 };
 
 const getName = () => {
-  if (localStorage.getItem("email").replace("@gmail.com", "")) {
+  if (localStorage.getItem("email")) {
     return localStorage.getItem("email").replace("@gmail.com", "");
   }
   return "";
