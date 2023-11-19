@@ -17,7 +17,7 @@ const AuthModel = () => {
   const handleSubmitForm = async () => {
     if (email.length < 5) {
       setError(true);
-      setErrorMessage("Email Requred");
+      setErrorMessage("Email is Required");
       return;
     }
     if (password.length < 8) {
